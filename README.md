@@ -57,7 +57,7 @@ export default App
 
 ```
 
-<table border="1">
+<table>
     <thead>
         <tr>
             <th>Parameter</th>
@@ -72,7 +72,7 @@ export default App
             <td rowspan=2>captureBtn</td>
             <td>bg</td>
             <td>Background color for the button with + icon</td>
-            <td style="color:#3498DB">#3498DB</td>
+            <td><font color="#3498DB">#3498DB</font></td>
             <td>Any color</td>
         </tr>
         <tr>
@@ -85,7 +85,7 @@ export default App
             <td rowspan=2>cropBtn</td>
             <td>bg</td>
             <td>Background color for the button with + icon</td>
-            <td style="color:#F4B230">#F4B230</td>
+            <td><font color="#F4B230">#F4B230</font></td>
             <td>Any color</td>
         </tr>
         <tr>
@@ -105,24 +105,67 @@ export default App
             <td>defaultImg</td>
             <td></td>
             <td>Placeholder image for preview</td>
-            <td><img style="border-radius:100%" src='data:image/png;base64,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'/></td>
-            <td>dataURL(base64), foreign link, Anything that goes within &lt;img `src=" "`&gt;</td>
+            <td><img src='./defaultImg.png'/></td>
+            <td>dataURL(base64), foreign link, Anything that goes within <br/>&lt;img `src=" "`&gt;</td>
+        </tr>
+        <tr>
+            <td>theme</td>
+            <td></td>
+            <td>Theme dark/light</td>
+            <td>light</td>
+            <td>dark / light</td>
+        </tr>
+        <tr>
+            <td rowspan="8">compression</td>
+            <td>maxSizeMB</td>
+            <td>Maximum size of the image after compression.</td>
+            <td>0.1</td>
+            <td>Number</td>
+        </tr>
+        <tr>
+            <td>maxWidthOrHeight</td>
+            <td>compressedFile will scale down by ratio to a point that width or height is smaller than maxWidthOrHeight.</td>
+            <td>1000</td>
+            <td>Number</td>
+        </tr>
+        <tr>
+            <td>onProgress</td>
+            <td>A function takes one progress argument.</td>
+            <td></td>
+            <td>percentage from 0 to 100</td>
+        </tr>
+        <tr>
+            <td>useWebWorker</td>
+            <td>Use multi-thread web worker, fallback to run in main-thread,</td>
+            <td>true</td>
+            <td>true / false</td>
+        </tr>
+        <tr>
+            <td>maxIteration</td>
+            <td>Max number of iteration to compress the image.</td>
+            <td>10</td>
+            <td>Number</td>
+        </tr>
+        <tr>
+            <td>exifOrientation</td>
+            <td>see https://stackoverflow.com/a/32490603/10395024.</td>
+            <td></td>
+            <td>Number</td>
+        </tr>
+        <tr>
+            <td>fileType</td>
+            <td>FileType override.</td>
+            <td></td>
+            <td>image/png, image/jpeg, image/jpg</td>
+        </tr>
+        <tr>
+            <td>initialQuality</td>
+            <td>Initial quality value.</td>
+            <td>1</td>
+            <td> between 0 and 1</td>
         </tr>
     </tbody>
 </table>
-
-
-<br/>
-## Parameters 
-*All the Parameter are optional  😅*
-
-Parameter | Description | Default Value | Valid Values
------------- | ------------- | ------------- | -------------
-defaultImg | Default image placeholder | Meme Face | Anything that goes within <img `src=" "` />
-color | Color of progress bar (loading) | ![#FFCB2B](https://via.placeholder.com/15/FFCB2B/000000?text=+) `#FFCB2B` | HEX, RGB, Valid Color Names (RED, BLUE, etc...)
-size | Defines the size of the component - Height x Width | 200px | px, em, vh, cm, mm, %, etc...
-setOutput | Output Base64 will be returned as a parameter to this function. |  | __any function__. It can also be a console.log  😅
-  mb | Maximum Size of image after compression | 1 MB | MB
 
 <br/>
 
