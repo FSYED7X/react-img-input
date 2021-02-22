@@ -72,7 +72,7 @@ export default App
             <td rowspan=2>captureBtn</td>
             <td>bg</td>
             <td>Background color for the button with + icon</td>
-            <td><font color="#3498DB">#3498DB</font></td>
+            <td>#3498DB</td>
             <td>Any color</td>
         </tr>
         <tr>
@@ -85,7 +85,7 @@ export default App
             <td rowspan=2>cropBtn</td>
             <td>bg</td>
             <td>Background color for the button with + icon</td>
-            <td><font color="#F4B230">#F4B230</font></td>
+            <td>#F4B230</td>
             <td>Any color</td>
         </tr>
         <tr>
@@ -114,6 +114,9 @@ export default App
             <td>Theme dark/light</td>
             <td>light</td>
             <td>dark / light</td>
+        </tr>
+        <tr>
+          <td colspan="5">Parameters for <b>browser-image-compression</b></td>
         </tr>
         <tr>
             <td rowspan="8">compression</td>
