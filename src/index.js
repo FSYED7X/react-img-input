@@ -9,15 +9,15 @@ const defaultBase64 =
 
 var options = {
   maxSizeMB: 0.1,
-  maxWidthOrHeight: 500,
+  maxWidthOrHeight: 1000,
   useWebWorker: true
 }
 
-const initiate = (setCropDialog, setCropRegion, setTempImage, file) => {
+const initiate = (compression, setCropDialog, setTempImage, file) => {
   setTempImage()
   setCropDialog(true)
 
-  imageCompression(file, options)
+  imageCompression(file, compression || options)
     .then(function (compressedFile) {
       var reader = new FileReader()
       reader.readAsDataURL(compressedFile)
@@ -55,20 +55,28 @@ const initCropWindow = (img, setCropRegion) => {
   }
 }
 
-const cropImage = (image, region, setImage, setCropDialog, setLoading) => {
+const cropImage = (
+  image,
+  region,
+  setImage,
+  setCropDialog,
+  setLoading,
+  setOutput
+) => {
   setCropDialog(false)
   setLoading(true)
   const { x, y, height, width } = region
   Clipper(image, function () {
     this.crop(x, y, height, width).toDataURL(function (dataUrl) {
       setImage(dataUrl)
+      setOutput && setOutput(dataUrl)
       setLoading(false)
     })
   })
 }
 
-export const ReactImgInput = ({ config }) => {
-  const { size, captureBtnBg, captureBtnIconColor, defaultImg } = config
+export const ReactImgInput = ({ config, setOutput }) => {
+  const { size, captureBtn, cropBtn, defaultImg, theme, compression } = config
 
   const input = useRef()
   const [Image, setImage] = useState()
@@ -83,15 +91,18 @@ export const ReactImgInput = ({ config }) => {
 
   return (
     <Fragment>
-      <main id={styles.ReactImgInput}>
+      <main
+        id={styles.ReactImgInput}
+        style={{ height: size || '150px', width: size || '150px' }}
+      >
         <input
           type='file'
           ref={input}
           accept='image/*'
           onInput={(e) =>
             initiate(
+              compression,
               setCropDialog,
-              setCropRegion,
               setTempImage,
               e.target.files[0]
             )
@@ -106,12 +117,13 @@ export const ReactImgInput = ({ config }) => {
         ) : !Image ? (
           <button
             onClick={() => input.current.click()}
-            style={{ backgroundColor: '#3498db' }}
+            style={{
+              backgroundColor: captureBtn.bg || '#3498db',
+              color: captureBtn.color || '#fff'
+            }}
           >
             <svg
               xmlns='http://www.w3.org/2000/svg'
-              width={24}
-              height={24}
               viewBox='0 0 24 24'
               fill='none'
               stroke='currentColor'
@@ -124,34 +136,36 @@ export const ReactImgInput = ({ config }) => {
             </svg>
           </button>
         ) : (
-          <button
-            onClick={() => {
-              setCropDialog(true)
-            }}
-            style={{ backgroundColor: '#F4B230' }}
-          >
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width={24}
-              height={24}
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth={2}
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            >
-              <circle cx={12} cy={12} r={10} />
-              <line x1={22} y1={12} x2={18} y2={12} />
-              <line x1={6} y1={12} x2={2} y2={12} />
-              <line x1={12} y1={6} x2={12} y2={2} />
-              <line x1={12} y1={22} x2={12} y2={18} />
-            </svg>
-          </button>
-        )}
+              <button
+                onClick={() => {
+                  setCropDialog(true)
+                }}
+                style={{
+                  backgroundColor: cropBtn.bg || '#F4B230',
+                  color: cropBtn.color || '#fff'
+                }}
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth={2}
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                >
+                  <circle cx={12} cy={12} r={10} />
+                  <line x1={22} y1={12} x2={18} y2={12} />
+                  <line x1={6} y1={12} x2={2} y2={12} />
+                  <line x1={12} y1={6} x2={12} y2={2} />
+                  <line x1={12} y1={22} x2={12} y2={18} />
+                </svg>
+              </button>
+            )}
       </main>
       {cropDialog && (
         <Modal
+          theme={theme}
           close={() => {
             input.current.value = null
             setCropDialog(false)
@@ -168,7 +182,8 @@ export const ReactImgInput = ({ config }) => {
               cropRegion,
               setImage,
               setCropDialog,
-              setLoading
+              setLoading,
+              setOutput
             )
           }}
         />
@@ -177,23 +192,36 @@ export const ReactImgInput = ({ config }) => {
   )
 }
 
-const Modal = ({ close, recapture, save }) => {
+const Modal = ({ close, recapture, save, theme }) => {
   return (
     <main id={styles.ReactImgInputCropModal}>
-      <section>
-        <h1>Crop Image</h1>
+      <section
+        style={{ backgroundColor: theme === 'dark' ? '#424242' : '#fff' }}
+      >
+        <h1 style={{ color: theme === 'dark' ? '#fff' : '#424242' }}>
+          Crop Image
+        </h1>
         <article id='ReactImgInputCropMountLocation'>
           <aside className='loader' />
           Compressing...
         </article>
         <div>
-          <button onClick={close} data-danger>
+          <button
+            onClick={close}
+            style={{ color: theme === 'dark' ? '#fff' : 'crimson' }}
+          >
             Cancel
           </button>
-          <button onClick={recapture} data-warning>
+          <button
+            onClick={recapture}
+            style={{ color: theme === 'dark' ? '#fff' : '#F4B400' }}
+          >
             Recapture
           </button>
-          <button onClick={save} data-primary>
+          <button
+            onClick={save}
+            style={{ color: theme === 'dark' ? '#fff' : '#1976d2' }}
+          >
             Save
           </button>
         </div>

@@ -1,6 +1,6 @@
 {
-  "short_name": "image_compress_crop_preview",
-  "name": "image_compress_crop_preview",
+  "short_name": "react-img-input",
+  "name": "react-img-input",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
 #ReactImgInput {
-  height: 150px;
-  width: 150px;
   border-radius: 100%;
   background-color: #999;
   position: relative;
@@ -38,7 +36,6 @@
 }
 
 #ReactImgInput button {
-  color: #fff;
   border: none;
   border-radius: 100%;
   padding: 5px;
@@ -53,8 +50,10 @@
           justify-content: center;
   position: absolute;
   bottom: 0;
-  right: 6%;
+  right: 5px;
   cursor: pointer;
+  height: 25%;
+  width: 25%;
 }
 
 #ReactImgInput button:hover, #ReactImgInput button:focus {
@@ -73,7 +72,7 @@
 
 #ReactImgInputCropModal {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.87);
   min-height: 100vh;
   max-height: 100vh;
   width: 100%;
@@ -116,7 +115,6 @@
   transition: -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, -webkit-box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  background-color: #fff;
 }
 
 #ReactImgInputCropModal section h1 {
@@ -247,18 +245,6 @@
     bottom: 0;
     width: 100%;
   }
-}
-
-[data-danger] {
-  color: crimson;
-}
-
-[data-warning] {
-  color: #F4B400;
-}
-
-[data-primary] {
-  color: #1976d2;
 }
 
 @-webkit-keyframes spin {
