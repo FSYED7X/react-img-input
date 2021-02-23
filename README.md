@@ -19,16 +19,15 @@ __Another cool React Component Library__
 ```bash
 npm install --save react-img-input
 ```
-
 ## Usage
 
-![Demo]
+<!-- ![Demo] -->
 
 #### Default Usage
 ```jsx
 import React from 'react'
 
-import { Squared } from 'react-img-input'
+import { ReactImgInput } from 'react-img-input'
 import 'react-img-input/dist/index.css'
 
 const config = {
