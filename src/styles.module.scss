@@ -9,6 +9,7 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	width: fit-content;
 	input{
 		display: none!important;
 	}
@@ -80,6 +81,8 @@
 			text-align: left;
 			flex: 0 0 auto;
 			font-size: 1.5em!important;
+			margin-block-start: 0.83em!important;
+    		margin-block-end: 0.83em!important;
 		}
 		article{
 			flex: 1 1 auto;
@@ -148,6 +151,7 @@
 				border-bottom: 1px solid #ccc;
 				margin: 0;
 				padding: 3%;
+				margin: 0!important;
 			}
 			article{
 				background-color: transparent!important;

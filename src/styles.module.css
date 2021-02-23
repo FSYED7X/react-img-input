@@ -16,6 +16,9 @@
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 #ReactImgInput input {
@@ -125,6 +128,10 @@
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
   font-size: 1.5em !important;
+  -webkit-margin-before: 0.83em !important;
+          margin-block-start: 0.83em !important;
+  -webkit-margin-after: 0.83em !important;
+          margin-block-end: 0.83em !important;
 }
 
 #ReactImgInputCropModal section article {
@@ -227,6 +234,7 @@
     border-bottom: 1px solid #ccc;
     margin: 0;
     padding: 3%;
+    margin: 0 !important;
   }
   #ReactImgInputCropModal section article {
     background-color: transparent !important;
